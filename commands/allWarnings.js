@@ -1,24 +1,21 @@
 const fs = require("fs")
 
 module.exports = {
-    name: "warning",
-    aliases: ["wr"],
-    description: "list warnings for user",
+    name: "warnings",
+    aliases: ["wra"],
+    description: "list all warnings",
     execute: async (client, message, args, Discord) => {
         const JSON_FILE = "./database/warn.json"
 
         let response = await JSON.parse(fs.readFileSync(JSON_FILE))
 
         const target = message.mentions.users.first();
-        if(!target) {
-            message.channel.send("Please mention user")
-            return
-        }
-        
+        let guildId = message.guild.id
+
         let index = 0;
 
         for (let item of response) {
-            if (item.server == message.guild.id && target.id == item.id) {
+            if (item.server == message.guild.id) {
                 index++;
                 let dt = new Date(item.date)
                 const Embed = new Discord.MessageEmbed()
@@ -48,9 +45,9 @@ module.exports = {
                 message.channel.send(Embed)
             }
         }
+
         if(index <= 0) {
             message.channel.send("There are no warings in this server")
         }
-
     }
 }

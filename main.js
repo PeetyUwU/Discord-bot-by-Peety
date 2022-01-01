@@ -9,7 +9,13 @@ const querystring = require("querystring")
 
 
 
-const client = new Discord.Client();
+const client = new Discord.Client({
+    intents: [
+        "GUILDS",
+        "GUILD_MESSAGES",
+        "GUILD_VOICE_STATES"
+    ]
+});
 
 
 const prefix = ";"
@@ -40,14 +46,18 @@ client.events = new Discord.Collection();
 
 
 // distube
-DisTube = require("distube")
-client.distube = new DisTube(client, {
-    searchSongs: false,
+const { DisTube } = require("distube")
+const distube = new DisTube(client, {
+    searchSongs: 0,
     emitNewSongOnly: true
-});
+})
+// client.distube = new DisTube(client, {
+//     searchSongs: false,
+//     emitNewSongOnly: true
+// });
 
 
-client.distube
+distube
     .on("playSong", (message, queue, song) => message.channel.send(`**<:4186_IrizchuComfy:809424032595312640> ⁓ Playing now:** ${song.name}\` - \`${song.formattedDuration}\``))
     .on("addSong", (message, queue, song) => message.channel.send(`**<:4186_IrizchuComfy:809424032595312640> ⁓ Added: ** ${song.name} - \`${song.formattedDuration}\` **to the queue.**`))
     .on("error", (message, e) => {
@@ -169,79 +179,79 @@ client.on('ready', () => {
 
 
 //* twitch api
-const client2 = new tmi.Client({
-    options: {
-        debug: true,
-        messagesLogLevel: "info"
-    },
-    connection: {
-        reconnect: true,
-        secure: true
-    },
+// const client2 = new tmi.Client({
+//     options: {
+//         debug: true,
+//         messagesLogLevel: "info"
+//     },
+//     connection: {
+//         reconnect: true,
+//         secure: true
+//     },
 
-    identity: {
-        username: `${process.env.TWITCH_USERNAME}`,
-        password: `${process.env.TWITCH_OAUTH}`
-    },
-    channels: [`${process.env.TWITCH_CHANNEL}`]
-})
+//     identity: {
+//         username: `${process.env.TWITCH_USERNAME}`,
+//         password: `${process.env.TWITCH_OAUTH}`
+//     },
+//     channels: [`${process.env.TWITCH_CHANNEL}`]
+// })
 
-client2.connect().catch(console.error);
-client2.on("message", (channel, tags, message, self) => {
-    if (self) return
-
-
-    switch (message.toLowerCase()) {
-        case "commands":
-            client2.say(channel, `@${tags.username}, available commands are:
-            Commands Help Greetings Hi !Name
-           
-            For more help just type "Help"`)
-            break;
-
-        case "greetings":
-            client2.say(channel, `@${tags.username}, what's up?`)
-            break;
-
-        case "hi":
-            client2.say(channel, `@${tags.username}, hello!`)
-
-        case '!name':
-            client2.say(channel, `Hello @${tags.username}, my name is Peety bot! Type "help" to continue...`);
-            break;
-
-        case 'help':
-            client2.say(channel, `${tags.username}, Use the following commands to get quick help:
-                -> Commands: Get Commands || 
-                Help: Get Help || 
-                Greetings: Get Greetings || 
-                Hi: Get "Hola" || 
-                !Name: Get my name || 
-                !Upvote first_name second_name: Upvote user first_name second_name ||  Upvote first_name second_name: Upvote user first_name second_name || 
-                !Cheer first_name second_name: Cheer first_name second_name || Cheers first_name second_name: Cheer first_name second_name --
-        
-                For more help just ping me up!
-                 `);
-            break;
-
-        case "data":
-            twitch_stream()
-            break;
-
-        default:
-
-            let mymessage = message.toString();
+// client2.connect().catch(console.error);
+// client2.on("message", (channel, tags, message, self) => {
+//     if (self) return
 
 
-            if ((mymessage.split(" ")[0]).toLowerCase() === "!upvote" || "upvote") {
-                client2.say(channel, `TwitchLit @${(mymessage.split(' ')[1] + '_' + mymessage.split(' ')[2])} TwitchLit  you have been UPVOTED by ${ tags.username }`);
-            } else if ((mymessage.split(' ')[0]).toLowerCase() === '!cheer' || 'cheers') {
-                client2.say(`HSCheers @${(mymessage.split(' ')[1] + '_' + mymessage.split(' ')[2])} HSCheers you have been UPVOTED by ${ tags.username }`);
-            }
-            break;
+//     switch (message.toLowerCase()) {
+//         case "commands":
+//             client2.say(channel, `@${tags.username}, available commands are:
+//             Commands Help Greetings Hi !Name
 
-    }
-})
+//             For more help just type "Help"`)
+//             break;
+
+//         case "greetings":
+//             client2.say(channel, `@${tags.username}, what's up?`)
+//             break;
+
+//         case "hi":
+//             client2.say(channel, `@${tags.username}, hello!`)
+
+//         case '!name':
+//             client2.say(channel, `Hello @${tags.username}, my name is Peety bot! Type "help" to continue...`);
+//             break;
+
+//         case 'help':
+//             client2.say(channel, `${tags.username}, Use the following commands to get quick help:
+//                 -> Commands: Get Commands || 
+//                 Help: Get Help || 
+//                 Greetings: Get Greetings || 
+//                 Hi: Get "Hola" || 
+//                 !Name: Get my name || 
+//                 !Upvote first_name second_name: Upvote user first_name second_name ||  Upvote first_name second_name: Upvote user first_name second_name || 
+//                 !Cheer first_name second_name: Cheer first_name second_name || Cheers first_name second_name: Cheer first_name second_name --
+
+//                 For more help just ping me up!
+//                  `);
+//             break;
+
+//         case "data":
+//             twitch_stream()
+//             break;
+
+//         default:
+
+//             let mymessage = message.toString();
+
+
+//             if ((mymessage.split(" ")[0]).toLowerCase() === "!upvote" || "upvote") {
+//                 client2.say(channel, `TwitchLit @${(mymessage.split(' ')[1] + '_' + mymessage.split(' ')[2])} TwitchLit  you have been UPVOTED by ${ tags.username }`);
+//             } else if ((mymessage.split(' ')[0]).toLowerCase() === '!cheer' || 'cheers') {
+//                 client2.say(`HSCheers @${(mymessage.split(' ')[1] + '_' + mymessage.split(' ')[2])} HSCheers you have been UPVOTED by ${ tags.username }`);
+//             }
+//             break;
+
+//     }
+// })
 
 
 //* twitch api curl
@@ -426,4 +436,4 @@ client2.on("message", (channel, tags, message, self) => {
 
 
 
-client.login("ODExMjA1OTk3NTQwMDE2MTQ4.YCu0dQ.QEAZBHoDWmcNoi9EIqoZp9-Qam0");
+client.login("ODExMjA1OTk3NTQwMDE2MTQ4.YCu0dQ.kPYmLV4l3n53NWl5d8R1sX83l_0");
