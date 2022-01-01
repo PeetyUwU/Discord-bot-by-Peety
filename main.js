@@ -119,14 +119,32 @@ client.on("guildCreate", (guild) => {
     //         },
 
     //       })
+    const CHANNEL_FILE = "./database/channel_file.json";
+    
+
     guild.channels.create('Peety-bot-channels', {
         type: 'category',
         position: 0
     });
-    guild.channels.create("Peety-bot-updates", "text").then((addChannel) => {
+    guild.channels.create("Peety-bot-updates", "text").then(addChannel => {
         const categoryId = guild.channels.cache.find(c => c.name === "Peety-bot-channels")
         addChannel.setParent(categoryId)
+
+        let channelId = []
+        let x = {}
+        x.channelId = addChannel.id
+        x.guild = guild.id
+        channelId.push(x)
+        let file = JSON.parse(fs.readFileSync(CHANNEL_FILE))
+        channelId.push(file)
+
+
+        fs.writeFileSync(CHANNEL_FILE, JSON.stringify(channelId, null, 2));
     })
+
+    
+    
+    
 
 
 })
@@ -436,4 +454,4 @@ client.on('ready', () => {
 
 
 
-client.login("ODExMjA1OTk3NTQwMDE2MTQ4.YCu0dQ.kPYmLV4l3n53NWl5d8R1sX83l_0");
+client.login("ODExMjA1OTk3NTQwMDE2MTQ4.YCu0dQ.Ujs8sIq-1fcUohZcfHp0oOKdEqk");
