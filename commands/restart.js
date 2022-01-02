@@ -12,7 +12,7 @@ setTimeout(function(){
 }, ms(1000))
         }
         else {
-            message.reply("If you have any problem please contact bot owner: Peety Wild Nya~#7721")
+            message.reply("Don't even think about it")
         }
 }
 }

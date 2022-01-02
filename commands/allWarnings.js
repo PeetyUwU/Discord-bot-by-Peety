@@ -2,7 +2,7 @@ const fs = require("fs")
 
 module.exports = {
     name: "warnings",
-    aliases: ["wra"],
+    aliases: ["wra","warningsall"],
     description: "list all warnings",
     execute: async (client, message, args, Discord) => {
         const JSON_FILE = "./database/warn.json"

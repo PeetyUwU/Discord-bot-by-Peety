@@ -6,7 +6,11 @@ module.exports = {
         const target = message.mentions.users.first();
         if(target){
             const memberTarget = message.guild.members.cache.get(target.id);
-            message.channel.send(`${target.username} has been banned<:misakimeiderendersmeimisakianime:809037500944875550>`);
+            if(memberTarget.hasPermission("ADMINISTRATOR")){
+                message.channel.send("Can't ban admins")
+                return
+            }
+            message.channel.send(`${target.username} has been banned`);
             memberTarget.ban();
                         
                         console.log("Banned " + target.tag);

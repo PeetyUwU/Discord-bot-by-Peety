@@ -1,5 +1,5 @@
 module.exports = {
-    name: "Peety",
+    name: "peety",
     description: "Easter egg",
     execute(client, message, args, Discord){
         message.channel.bulkDelete(1);

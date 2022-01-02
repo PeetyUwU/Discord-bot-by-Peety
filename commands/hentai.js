@@ -10,7 +10,7 @@ module.exports = {
       const user = message.member.user
  
 async function work() {
-  let GIF = await neko.nsfw.hentai();
+  let GIF = await neko.nsfw.randomHentaiGif();
   Embed
   .setColor(0xFF1100)
   .setTitle(" ")

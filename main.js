@@ -10,11 +10,7 @@ const querystring = require("querystring")
 
 
 const client = new Discord.Client({
-    intents: [
-        "GUILDS",
-        "GUILD_MESSAGES",
-        "GUILD_VOICE_STATES"
-    ]
+
 });
 
 
@@ -46,7 +42,9 @@ client.events = new Discord.Collection();
 
 
 // distube
-const { DisTube } = require("distube")
+const {
+    DisTube
+} = require("distube")
 const distube = new DisTube(client, {
     searchSongs: 0,
     emitNewSongOnly: true
@@ -120,7 +118,7 @@ client.on("guildCreate", (guild) => {
 
     //       })
     const CHANNEL_FILE = "./database/channel_file.json";
-    
+
 
     guild.channels.create('Peety-bot-channels', {
         type: 'category',
@@ -142,9 +140,9 @@ client.on("guildCreate", (guild) => {
         fs.writeFileSync(CHANNEL_FILE, JSON.stringify(channelId, null, 2));
     })
 
-    
-    
-    
+
+
+
 
 
 })
@@ -193,6 +191,47 @@ client.on('ready', () => {
     }, 10000)
 
 
+})
+client.on("ready", () => {
+    const CHANNEL_FILE = "./database/channel_file.json"
+    let file = JSON.parse(fs.readFileSync(CHANNEL_FILE))
+
+    for (let ch of file) {
+        let guild = ch.guild
+        let channel = ch.channelId
+        const Embed = new Discord.MessageEmbed()
+            .setColor(0xFF1100)
+            .setTitle(`Update`)
+            .setDescription(`Version: v2.5.3
+            **New commands:** 
+            wr <user> (warnings for specific user)
+            wra (warnings for all users on server)
+            cw <user> <warn id> (clear specific warning)
+            cwa <user> (clear all warnings for all users)
+            
+            **Patched commands:**
+            mute <member> <time>
+            fuck <mention/text>`)
+            .setThumbnail('https://i.imgur.com/qRFFT4T.jpg')
+            // .addFields({
+            //     name: "New commands",
+            //     value: `wr <user> (warnings for specific user)`,
+            // }, {
+            //     name: " ",
+            //     value: `wra (warnings for all users on server)`
+            // }, {
+            //     name: " ",
+            //     value: `cw <user> <warn id> (clear specific warning)`
+            // }, {
+            //     name: " ",
+            //     value: `cwa <user> (clear all warnings for all users)`
+            // })
+            .setTimestamp()
+            .setFooter("Made by Peety#1083")
+
+        let chan = client.channels.cache.get(channel)
+        chan.send(Embed)
+    }
 })
 
 
@@ -454,4 +493,4 @@ client.on('ready', () => {
 
 
 
-client.login("ODExMjA1OTk3NTQwMDE2MTQ4.YCu0dQ.Ujs8sIq-1fcUohZcfHp0oOKdEqk");
+client.login(process.env.TOKEN);

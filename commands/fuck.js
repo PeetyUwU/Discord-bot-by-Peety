@@ -10,12 +10,12 @@ module.exports = {
       const user = message.member.user
  
 async function work() {
-  let GIF = await neko.nsfw.randomHentaiGif();
+  let GIF = await neko.nsfw.classic();
   Embed
   .setColor(0xFF1100)
   .setTitle(" ")
   .setURL("https://www.youtube.com/channel/UCLW90lOshMMA-G6DvcoNWeg")
-  .setDescription(`Neko`)
+  .setDescription(`${user.username} fucks ${args.join(" ")}`)
   .addFields()
   .setImage(GIF.url)
   .setFooter("Bot made by Peety#1083")

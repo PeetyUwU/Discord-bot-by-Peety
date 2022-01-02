@@ -46,10 +46,10 @@ module.exports = {
                     memberTarget.roles.add(mainrole.id);
                     }, ms(args[1]));}
             }
-            if(mainrole){
-
+            if(!muterole) {
+                message.channel.send("please create mute role")
             }
-            else{
+            if(!mainrole){
                 message.channel.send("Please create main role")
             }
                     
