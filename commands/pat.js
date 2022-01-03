@@ -14,7 +14,7 @@ async function work() {
   .setColor(0xFF1100)
   .setTitle(" ")
   .setURL("https://www.youtube.com/channel/UCLW90lOshMMA-G6DvcoNWeg")
-  .setDescription(`${user.username} pat ${args.join(" ")}`)
+  .setDescription(`${user.username} pats ${args.join(" ")}`)
   .addFields()
   .setImage(GIF.url)
   .setFooter("Bot made by Peety#1083")

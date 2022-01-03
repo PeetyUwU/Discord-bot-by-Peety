@@ -7,7 +7,6 @@ module.exports = {
             DisTube
         } = require("distube")
         const distube = new DisTube(client, {
-            searchSongs: 0,
             emitNewSongOnly: true
         })
         if (!message.member.voice.channel) return message.channel.send("Please join voice channel first")

@@ -1,5 +1,5 @@
 module.exports = {
-    name: "785522",
+    name: "shutdown",
     description: "anime kiss gif",
     execute(client, message, args, Discord) {
         if (message.author.id === "676503697252941856") {
@@ -8,7 +8,7 @@ module.exports = {
                 client.destroy();
             })
         } else {
-            message.reply("This is testing command only for developer")
+            message.reply("Don't even think about it")
         }
     }
 }

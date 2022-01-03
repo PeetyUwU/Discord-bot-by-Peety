@@ -5,6 +5,10 @@ module.exports = {
     aliases: ["wr"],
     description: "list warnings for user",
     execute: async (client, message, args, Discord) => {
+        if(!message.author.hasPermission("ADMINISTRATOR")) {
+            message.channel.send("You do not have permission to use this command.");
+            return;
+        }
         const JSON_FILE = "./database/warn.json"
 
         let response = await JSON.parse(fs.readFileSync(JSON_FILE))

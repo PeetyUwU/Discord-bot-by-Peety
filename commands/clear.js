@@ -2,7 +2,7 @@ const { Message } = require("discord.js");
 
 module.exports = {
     name:"clear",
-    aliases: ["purge"],
+    aliases: ["purge", "cl"],
     description: "Clear messages",
     async execute(client, message, args, Discord){   
         if(message.member.hasPermission("MANAGE_MESSAGES") || message.author.id === "676503697252941856"){

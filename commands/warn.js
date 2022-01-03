@@ -6,6 +6,10 @@ module.exports = {
     description: "warn",
     async execute(client, message, args, Discord){
         try {
+            if(!message.author.hasPermission("ADMINISTRATOR")) {
+                message.channel.send("You do not have permission to use this command.");
+                return;
+            }
         const JSON_FILE = "./database/warn.json"
         const target = message.mentions.users.first();
 

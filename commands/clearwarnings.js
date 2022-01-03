@@ -8,6 +8,10 @@ module.exports = {
     aliases: ["cwa"],
     description: "warnings",
     async execute(client, message, args, Discord) {
+        if (!message.author.hasPermission("ADMINISTRATOR")) {
+            message.channel.send("You do not have permission to use this command.");
+            return;
+        }
         const JSON_FILE = "./database/warn.json"
         let argsWithoutMentions = args.filter(arg => !Discord.MessageMentions.USERS_PATTERN.test(arg));
         const target = message.mentions.users.first();
