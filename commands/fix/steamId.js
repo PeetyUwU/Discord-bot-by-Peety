@@ -16,8 +16,8 @@ module.exports = {
 
 
         let h = ""
-        for (let x of data) {
-            h = x.appid + "-" + x.playtime_forever + h
+        for (let steam of data) {
+            h = steam.appid + "-" + steam.playtime_forever + h
         }
         message.channel.send(h)
     }

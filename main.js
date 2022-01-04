@@ -149,7 +149,7 @@ client.on("guildCreate", (guild) => {
 })
 client.on("guildMemberAdd", (member) => {
     const messageSend = `Welcome <@${member.id}> to our server`
-    let welcomeChannel = member.guild.channels.cache.find(channel => channel.name === "Welcome" || channel.name === "welcome")
+    let welcomeChannel = member.guild.channels.cache.find(channel => channel.name === "Welcome" || channel.name === "welcome" || channel.id == "927651408159850516")
     if (welcomeChannel) {
         welcomeChannel.send(messageSend)
     }
@@ -193,59 +193,56 @@ client.on('ready', () => {
 
 
 })
-// client.on("ready", () => {
-//     const CHANNEL_FILE = "./database/channel_file.json"
-//     let file = JSON.parse(fs.readFileSync(CHANNEL_FILE))
+client.on("ready", () => {
+    const CHANNEL_FILE = "./database/channel_file.json"
+    let file = JSON.parse(fs.readFileSync(CHANNEL_FILE))
 
-//     for (let ch of file) {
-//         let guild = ch.guild
-//         let channel = ch.channelId
-//         const Embed = new Discord.MessageEmbed()
-//             .setColor(0xFF1100)
-//             .setTitle(`Update`)
-//             .setDescription(`Version: v2.5.6
-//             **New commands:** 
-//             wr <user> (warnings for specific user)
-//             wra (warnings for all users on server)
-//             cw <user> <warn id> (clear specific warning)
-//             cwa <user> (clear all warnings for all users)
-//             water
+    for (let ch of file) {
+        let guild = ch.guild
+        let channel = ch.channelId
+        const Embed = new Discord.MessageEmbed()
+            .setColor(0xFF1100)
+            .setTitle(`Update`)
+            .setDescription(`Version: v2.6.0
+            **New commands:** 
+            wr <user> (warnings for specific user)
+            wra (warnings for all users on server)
+            cw <user> <warn id> (clear specific warning)
+            cwa <user> (clear all warnings for all users)
+            water
+            banlist {bl}
             
-//             **Updated commands:**
-//             help
+            **Updated commands:**
+            help
 
-//             **Removed commands:**
-//             help2
+            **Removed commands:**
+            help2
 
-//             **Patched commands:**
-//             mute <member> <time>
-//             fuck <mention/text>
-//             pat <mention/text>
-//             hi
+            **Patched commands:**
+            mute <member> <time>
+            fuck <mention/text>
+            pat <mention/text>
+            hi
             
-//             **Patches:**
-//             when the bot join's new server it won't crash anymore`)
-//             .setThumbnail('https://i.imgur.com/qRFFT4T.jpg')
-//             // .addFields({
-//             //     name: "New commands",
-//             //     value: `wr <user> (warnings for specific user)`,
-//             // }, {
-//             //     name: " ",
-//             //     value: `wra (warnings for all users on server)`
-//             // }, {
-//             //     name: " ",
-//             //     value: `cw <user> <warn id> (clear specific warning)`
-//             // }, {
-//             //     name: " ",
-//             //     value: `cwa <user> (clear all warnings for all users)`
-//             // })
-//             .setTimestamp()
-//             .setFooter("Made by Peety#1083")
+            **Patches:**
+            when the bot join's new server it won't crash anymore
+            
+            **Commands on repair:**
+            play
+            loop
+            queue
+            filter
+            skip
+            jump
+            leave`)
+            .setThumbnail('https://i.imgur.com/qRFFT4T.jpg')
+            .setTimestamp()
+            .setFooter("Made by Peety#1083")
 
-//         let chan = client.channels.cache.get(channel)
-//         chan.send(Embed)
-//     }
-// })
+        let chan = client.channels.cache.get(channel)
+        chan.send(Embed)
+    }
+})
 
 
 //* twitch api

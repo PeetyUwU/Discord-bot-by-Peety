@@ -39,7 +39,7 @@
     "@discordjs/node-pre-gyp" "^0.4.0"
     "node-addon-api" "^3.2.1"
 
-"@discordjs/voice@>=0.5.6":
+"@discordjs/voice@^0.7.5", "@discordjs/voice@>=0.5.6":
   "integrity" "sha512-lUk+CmIXNKslT6DkC9IF9rpsqhzlTiedauUCPBzepjd4XWxwBZiyVIzR6QpbAirxkAwCoAbbje+3Ho71PGLEAw=="
   "resolved" "https://registry.npmjs.org/@discordjs/voice/-/voice-0.7.5.tgz"
   "version" "0.7.5"
@@ -519,6 +519,18 @@
   "version" "4.0.4"
   dependencies:
     "json-buffer" "3.0.1"
+
+"libsodium-wrappers@^0.7.9":
+  "integrity" "sha512-9HaAeBGk1nKTRFRHkt7nzxqCvnkWTjn1pdjKgcUnZxj0FyOP4CnhgFhMdrFfgNsukijBGyBLpP2m2uKT1vuWhQ=="
+  "resolved" "https://registry.npmjs.org/libsodium-wrappers/-/libsodium-wrappers-0.7.9.tgz"
+  "version" "0.7.9"
+  dependencies:
+    "libsodium" "^0.7.0"
+
+"libsodium@^0.7.0":
+  "integrity" "sha512-gfeADtR4D/CM0oRUviKBViMGXZDgnFdMKMzHsvBdqLBHd9ySi6EtYnmuhHVDDYgYpAO8eU8hEY+F8vIUAPh08A=="
+  "resolved" "https://registry.npmjs.org/libsodium/-/libsodium-0.7.9.tgz"
+  "version" "0.7.9"
 
 "lowercase-keys@^2.0.0":
   "integrity" "sha512-tqNXrS78oMOE73NMxK4EMLQsQowWf8jKooH9g7xPavRT706R6bkQJ6DY2Te7QukaZsulxa30wQ7bk0pm4XiHmA=="
