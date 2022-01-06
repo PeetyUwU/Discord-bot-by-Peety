@@ -7,14 +7,7 @@ const { Routes } = require('discord-api-types/v9');
 const slash = require('discord-slash-commands-v12');
 const querystring = require('querystring');
 
-const client = new Discord.Client({
-	intents: [
-		'GUILDS',
-		'GUILD_MEMBERS',
-		'GUILD_VOICE_STATES',
-		'GUILD_INTEGRATIONS',
-	],
-});
+const client = new Discord.Client();
 
 const prefix = ';';
 
@@ -201,7 +194,7 @@ async function getCanvas(member) {
 				if (channel.type === 'text' && !welcome) welcome = channel;
 			});
 			welcome.send(
-				`:wave: Hello <@${member.user.id}> welcome to **${member.guild.name}**`,
+				`:wave: Hello <@${member.user.id}> welcome to **${member.guild.name}**. We now currently have **${member.guild.memberCount}** members.`,
 				atta
 			);
 		}
@@ -249,7 +242,7 @@ client.on('ready', () => {
 			.setColor(0xff1100)
 			.setTitle(`Update`)
 			.setDescription(
-				`Version: v2.8.4\n**New commands:**\n\n**New features:**\nslash commands (need additonal permission, please kick and invite the bot. You can use ;invite)\nnew welcome message\n\n**Updated commands:**\n\n**Removed commands:**\n\n**Patched commands:**\n\n**Patches:**\n\n**Commands on repair:**\n\n**Repaired commands:**\n`
+				`Version: v2.8.7\n**New commands:**\n\n**New features:**\nslash commands (need additonal permission, please kick and invite the bot. You can use ;invite)\nnew welcome message\n\n**Updated commands:**\n\n**Removed commands:**\n\n**Patched commands:**\n\n**Patches:**\n\n**Commands on repair:**\n\n**Repaired commands:**\n`
 			)
 			.setThumbnail('https://i.imgur.com/qRFFT4T.jpg')
 			.setTimestamp()
