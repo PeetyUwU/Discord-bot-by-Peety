@@ -6,6 +6,7 @@ module.exports = {
     aliases: ["f"],
     description: "play song",
     execute: async (client, message, args) => {
+      
         const command = args.shift();
         if(!message.member.voice.channel) return message.channel.send("Please join voice channel first")
         if ([`3d`, `bassboost`, `echo`, `karaoke`, `nightcore`, `vaporwave`].includes(command)) {
